@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="wxqdoit">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简述LayaAir 是基于HTML5开源引擎，所开发的游戏既可以网页运行，也可以打包Android &amp;amp; ios app运行，目前更到1.7.19.1 beta版本，本次使用1.7.18稳定版。 本文介绍laya的下载安装，项目创建，目录结构，环境配置与es6+的支持，及具体开发知识，网页端发布等等方面。 下载安装官网传送门：www.layabox.com 进入首页看到如下两个下载按钮：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laya入门，这一篇应该够了">
+<meta property="og:url" content="https://www.wxqdoit.com/20180712/laya/index.html">
+<meta property="og:site_name" content="Hey, wxqdoit">
+<meta property="og:description" content="简述LayaAir 是基于HTML5开源引擎，所开发的游戏既可以网页运行，也可以打包Android &amp;amp; ios app运行，目前更到1.7.19.1 beta版本，本次使用1.7.18稳定版。 本文介绍laya的下载安装，项目创建，目录结构，环境配置与es6+的支持，及具体开发知识，网页端发布等等方面。 下载安装官网传送门：www.layabox.com 进入首页看到如下两个下载按钮：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/b3a96baefdfcb769457262214b77dd36a99.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/67d6697f96c54a1957f107e1b566229da03.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/8ad3ab28ea1113f1f137dd294028247f23a.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/67450942b0e47481e558ea5156ed9b0360b.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/ff2169a74eda4dda07d6b2204282f47af42.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/0c71eaf1f8fae82622426e5da4cdf4464d2.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/aa8fc8c9d224438c8ce0a3be8818f34739a.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/c85b911f5969a178b1f73d6dda459458138.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/1b7ec6c6f7d2016a2a65f79666390ec237b.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/442733b35e207b3356cf10b877437fa1999.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/d4f548106f7dfae27847c4905c739e54b9b.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/379b2763d337e38c5117164226775473490.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/c72b495c1733c22903694ec15774cfc70d6.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/0efb0113ae091c482c8fe08601a1773f92d.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/61aa6b4434d68be76cc53466e82694d38a7.jpg">
+<meta property="og:updated_time" content="2019-02-15T17:20:46.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="laya入门，这一篇应该够了">
+<meta name="twitter:description" content="简述LayaAir 是基于HTML5开源引擎，所开发的游戏既可以网页运行，也可以打包Android &amp;amp; ios app运行，目前更到1.7.19.1 beta版本，本次使用1.7.18稳定版。 本文介绍laya的下载安装，项目创建，目录结构，环境配置与es6+的支持，及具体开发知识，网页端发布等等方面。 下载安装官网传送门：www.layabox.com 进入首页看到如下两个下载按钮：">
+<meta name="twitter:image" content="https://oscimg.oschina.net/oscnet/b3a96baefdfcb769457262214b77dd36a99.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '10/21/2018 08:00:00',
+    onlineAPI: '',
+    site: {
+      title: 'Hey, wxqdoit',
+      subtitle: '',
+      author: 'wxqdoit'
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: 'w(゜Д゜)w 啊啊',
+      hide_text: '┗|｀O′|┛ 嗷~~'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://www.wxqdoit.com/20180712/laya/">
+
+
+
+
+
+  <title>laya入门，这一篇应该够了 | Hey, wxqdoit</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-navicon"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/wxqdoit.jpg" alt="wxqdoit">
+    <h2 class="site-master-description" itemprop="description">
+        Bug开发者 | 母胎Solo | 家境贫寒 | 前端弱鸡
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">07月</div>
+			<div class="post-day">12</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+        <a href="/categories/技术栈/" itemprop="url" rel="index">
+          <span itemprop="name">技术栈</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wxqdoit.com/20180712/laya/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxqdoit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wxqdoit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey, wxqdoit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">laya入门，这一篇应该够了</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T22:33:54+08:00">
+                2018-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术栈/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>LayaAir 是基于HTML5开源引擎，所开发的游戏既可以网页运行，也可以打包Android &amp; ios app运行，目前更到1.7.19.1 beta版本，本次使用1.7.18稳定版。 本文介绍laya的下载安装，项目创建，目录结构，环境配置与es6+的支持，及具体开发知识，网页端发布等等方面。</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>官网传送门：<a href="https://www.layabox.com/" target="_blank" rel="noopener">www.layabox.com</a></p>
+<p>进入首页看到如下两个下载按钮：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/b3a96baefdfcb769457262214b77dd36a99.jpg" alt=""></p>
+<p>此刻就让人有点懵逼了，layaAir Engine可以理解为引擎内核（源码），IDE就是集成开发工具了，直接下载IDE就好，因为下载下来的已经集成对应版本的源码包了（你会发现，每一个版本的源码都有对应版本的IDE。截止目前更到1.7.19.1 beta版本，为了稳定还是使用1.7.18版本。如下（对，你没看错，蓝色那个，点…点…点它：</p>
+<a id="more"></a>
+<p><img src="https://oscimg.oschina.net/oscnet/67d6697f96c54a1957f107e1b566229da03.jpg" alt=""></p>
+<p>下载完成之后是一个zip压缩包，不用安装的，直接解压到你想放的位置，完事儿之后就可以使用了：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/8ad3ab28ea1113f1f137dd294028247f23a.jpg" alt=""></p>
+<p><img src="https://oscimg.oschina.net/oscnet/67450942b0e47481e558ea5156ed9b0360b.jpg" alt=""></p>
+<p>就是他了（.exe文件，双击吧，看到如下界面你就完成第一步了！</p>
+<p><img src="https://oscimg.oschina.net/oscnet/ff2169a74eda4dda07d6b2204282f47af42.jpg" alt=""></p>
+<h2 id="项目创建与目录结构"><a href="#项目创建与目录结构" class="headerlink" title="项目创建与目录结构"></a>项目创建与目录结构</h2><p>点击新建项目，弹出如下框：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/0c71eaf1f8fae82622426e5da4cdf4464d2.jpg" alt=""></p>
+<p>选择默认的UI示例项目，类型选择JavaScript项目，如果你会as或者ts也可以选它，然后点击创建，创建完成进入代码模式，简单标注了一下：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/aa8fc8c9d224438c8ce0a3be8818f34739a.jpg" alt=""></p>
+<p>接下来什么将调试器选择chrome调试，点击三角按钮或者按f5运行，你会看到如下一个巨丑的页面弹出来emmmm（真的很丑，但是只要正常看到，这一步就算完成了）。</p>
+<p><img src="https://oscimg.oschina.net/oscnet/c85b911f5969a178b1f73d6dda459458138.jpg" alt=""></p>
+<p>接下来是目录结构，传送门：<a href="https://ldc.layabox.com/doc/?nav=zh-js-1-0-0" target="_blank" rel="noopener">https://ldc.layabox.com/doc/?nav=zh-js-1-0-0</a>，不过这个里面说的hin多hin杂，在这里简单说重点：</p>
+<p><strong>项目运行配置文件（.laya文件夹）。</strong></p>
+<ol>
+<li>launch.json，当你将项目移动或拷贝到别处的时候需要修改，什么路径统统要改。</li>
+<li>如果你用chrome运行项目，会有一个chrome文件夹，不用管他，垃圾东西。</li>
+</ol>
+<p><strong>项目的输出目录（bin文件夹）。</strong>项目编译后的东西都在里面，什么动画，图集，你的源码等等，最后项目发布也是从这个目录发布</p>
+<ol>
+<li>lib，全是引擎的源码包，不用的可以删除</li>
+<li>res，资源文件，图片图集，音频文件都可以在里面</li>
+<li>index.html，点进去看看，里面说的很清楚了</li>
+</ol>
+<p><strong>UI项目目录（laya）。</strong>其实这些都看自己的喜好，没有规定的话，只要合理爱咋咋地吧。</p>
+<ol>
+<li><p>laya/assets目录用来存放UI页面、粒子等组件所需的图片资源。</p>
+</li>
+<li><p>laya/pages目录用来存放LayaAirIDE创建页面布局生成的文件。</p>
+</li>
+</ol>
+<p><strong>代码提供文件目录（libs），不用管他。</strong></p>
+<p><strong>项目代码目录（src）。</strong></p>
+<pre><code>这个就比较牛逼了，全是你的代码，不过后面我们不在里面开发。
+</code></pre><p>目录结构也介绍完了，这一节大概就是这些，下一节讲解配置我们真正的而开发环境。</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>既然是属于h5前端开发，自然要配置一系列的工具。webpack，babel，gulp等等。（如果大家不想使用这些工具，直接用项目默认的开发模式也可以，前面也足够了）</p>
+<ul>
+<li>安装Node.js，推荐稳定版本8.x吧（不会问度娘。</li>
+<li>在项目根目录新建文件夹www（其实开发文件夹应该叫做src的，无奈被默认的目录占用了，src这个文件夹不能动他，因为构建的ui文件类会在里面，稍后我们输出webpack的main.js也会放在里面。然后项目编译时会用到src）。</li>
+<li>接下来切换到下方的终端（没有看到的话f5一下吧），用npm安装如下一堆依赖的东西（你可以直接建一个package.json文件，将下面的考进去，然后npm install，谢谢赶紧我~~）。完了之后www会有一个node_modules文件夹，全是刚才装的b：</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;webpack-demo&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;webpack&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;wxq&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-cli&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,</span><br><span class="line">    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.23.0&quot;,</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;,</span><br><span class="line">    &quot;dateformat&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">    &quot;gulp&quot;: &quot;^3.9.1&quot;,</span><br><span class="line">    &quot;gulp-babel&quot;: &quot;^7.0.1&quot;,</span><br><span class="line">    &quot;gulp-less&quot;: &quot;^3.4.0&quot;,</span><br><span class="line">    &quot;gulp-util&quot;: &quot;^3.0.8&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^3.10.0&quot;,</span><br><span class="line">    &quot;webpack-stream&quot;: &quot;^4.0.0&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>创建.babelrc文件，里面是babel的预设集配置等，如果你不想懂，可以直接copy进去：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;env&quot;],</span><br><span class="line">  &quot;plugins&quot;: [[</span><br><span class="line">    &quot;transform-runtime&quot;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;helpers&quot;: false,</span><br><span class="line">      &quot;polyfill&quot;: false,</span><br><span class="line">      &quot;regenerator&quot;: true,</span><br><span class="line">      &quot;moduleName&quot;: &quot;babel-runtime&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>创建webpack.config.js文件，这个是webpack的配置文件，主要配置webpack打包的入口文件口和输出文件，之后会时候gulp的自动任务执行webpack打包，同时会将es6（es7、es8）通过bable转译为es5。</p>
+</li>
+<li><p>创建gulpfile.js文件，这个是gulp的配置文件，如果你不想懂，也可以直接copy进去：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="comment">//转译JavaScript</span></span><br><span class="line">gulp.task(<span class="string">"webpack"</span>,()=&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack-stream"</span>);</span><br><span class="line">    <span class="keyword">const</span>  config = <span class="built_in">require</span>(<span class="string">"./webpack.config"</span>);</span><br><span class="line">    gulp.src(<span class="string">"./src/**/*.js"</span>)</span><br><span class="line">        .pipe(webpack(config))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">"../src/"</span>))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"watch"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">"./src/**/*.js"</span>,[<span class="string">'webpack'</span>]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"default"</span>,[<span class="string">"webpack"</span>,<span class="string">'watch'</span>]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>解释一下吧，引入依赖gulp，创建三个任务，第一个是打包任务，webpack执行，第二个是watch任务监听文件变化自动执行第一个任务，这样就不需要每次修改文件都去执行gulp命令了，美滋滋~~，第三个默认任务，就是去执行上面两个咯。
+</code></pre><ul>
+<li>执行npm install gulp -g 安装gulp到全局（必须安装到全局 全局 -g），不然会报错。<img src="https://oscimg.oschina.net/oscnet/1b7ec6c6f7d2016a2a65f79666390ec237b.jpg" alt=""></li>
+</ul>
+<p> 上述步骤完成且没有问题之后，成功之后再去执行gulp命令吧，如图我将www下面的src文件夹下面的所有东西都打包到了根目录下的src文件夹的mian.js文件里面:</p>
+<p><img src="https://oscimg.oschina.net/oscnet/442733b35e207b3356cf10b877437fa1999.jpg" alt=""></p>
+<p><img src="https://oscimg.oschina.net/oscnet/d4f548106f7dfae27847c4905c739e54b9b.jpg" alt=""></p>
+<p>然后打开你的www–&gt;src–&gt;main.js：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/379b2763d337e38c5117164226775473490.jpg" alt=""></p>
+<p>就长这样啦，然后去把index.html里面的代码改改吧，噢啦，环境搭建完成。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--IDE生成的UI文件--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../src/ui/layaUI.max.all.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--jsfile--startTag--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../src/main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--jsfile--endTag--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果到这里，你没有如遇到什么难题，那我们就可以准备进入正题了，emmmm。</p>
+<h1 id="开发入门"><a href="#开发入门" class="headerlink" title="开发入门"></a>开发入门</h1><h2 id="舞台搭建与适配"><a href="#舞台搭建与适配" class="headerlink" title="舞台搭建与适配"></a>舞台搭建与适配</h2><p>开发目录下新建的main.js文件全部代码删除，然后不用管它，接下来：</p>
+<p>GameMain.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">GameMain</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> init() &#123;</span><br><span class="line">        Laya.MiniAdpter.init();</span><br><span class="line">        Laya.init(<span class="number">768</span>, <span class="number">1366</span>, Laya.WebGL);</span><br><span class="line">        Laya.stage.bgColor = <span class="string">"#5a7b9a"</span>;</span><br><span class="line">        <span class="comment">//水平对齐方式，水平居中</span></span><br><span class="line">        Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;</span><br><span class="line">        <span class="comment">//垂直对齐方式，垂直居中</span></span><br><span class="line">        Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;</span><br><span class="line">        <span class="comment">//按照宽度</span></span><br><span class="line">        Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;</span><br><span class="line">        <span class="comment">//屏幕适配，横屏还是竖屏，默认不改变</span></span><br><span class="line">        Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;</span><br><span class="line">        <span class="comment">//禁用多点触控</span></span><br><span class="line">        Laya.MouseManager.multiTouchEnabled = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果es6不懂的可以先去补一下，创建一个静态的方法init()。</p>
+<p>Laya.MiniAdpter.init();//如果不考虑微信小游戏可以不加，当然加上也不会怎样。</p>
+<p>Laya.init(768, 1366, Laya.WebGL);//初始化舞台大小，记住这个尺寸是设计大佬给的，她们的图都按照这个尺寸来做的。宽、高、渲染方式。</p>
+<p>Laya.stage.bgColor = “#5a7b9a”;//这个舞台背景，爱咋咋地吧。</p>
+<p>接下来的全是做是配的，copy贴上去就对了。还有其他的适配方式，以及参数，自己去官网看吧，反正我怎么不用。</p>
+<h2 id="关于图集打包与资源加载策略"><a href="#关于图集打包与资源加载策略" class="headerlink" title="关于图集打包与资源加载策略"></a>关于图集打包与资源加载策略</h2><p>在进入main文件之前讲一讲这两点：图集打包与资源加载。</p>
+<p><strong>图集打包：</strong></p>
+<p>进入编辑模式，你懂我意思吧：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/c72b495c1733c22903694ec15774cfc70d6.jpg" alt=""></p>
+<p>看图的时候不要问我拿来那么多文件，看重点：在这个界面，当你按下f12的时候，会发布代码，并将红色框里的文件夹里面的图片，按分文夹的方式打包成图集，这些文件就是在www/laya/assets下面，发布完成之后，你在bin/res/atlas下面看到图集的.png与.atlas（json）文件，这两个文件都是一一对应的。</p>
+<p>注意：在编辑模式按f9可以进行设置，包括图集的大小，当然，这里主要也是设置图集大小。</p>
+<p>这图集打包就这样咯，接下来是资源加载↓↓↓↓↓</p>
+<p><strong>资源加载：</strong></p>
+<p>关于资源加载如果做过游戏都知道，有一个载入界面，载入界面用到的所有资源最好是放在游戏包里面，进行第一次加载。第一次加载完成之后就是加载游戏需要的其它大部分资源，这里面的资源有可能是在本地，也有可能加载网络资源，一般需要写一个资源加载类。</p>
+<p>简单介绍laya里面的资源加载类该如何写：</p>
+<p>主要使用Laya.loader.load()方法进行加载，该方法有三个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Laya.loader.load(<span class="keyword">this</span>.resources, Laya.Handler.create(<span class="keyword">this</span>, loaded), Laya.Handler.create(<span class="keyword">this</span>, loading, <span class="literal">null</span>, <span class="literal">false</span>));</span><br></pre></td></tr></table></figure>
+<p><em>第一个</em>，资源，如果单个加载，可以写字符串路径，如果批量加载，写成数组对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> res = [</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/start.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/activity.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/popup.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/comp.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/part.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/shareMask.atlas"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">url</span>: <span class="string">"res/atlas/common.atlas"</span>&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">     url: <span class="string">"res/sound/btn_click.mp3"</span>,</span><br><span class="line">     name: <span class="string">"btn_click"</span>,</span><br><span class="line">     type: Laya.Loader.SOUND</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">     url: <span class="string">"res/sound/btnShowSound.mp3"</span>,</span><br><span class="line">     name: <span class="string">"btnShowSound"</span>,</span><br><span class="line">     type: Laya.Loader.SOUND</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>name可以作为名字调用资源，如果不写，用的时候只能通过字符串路径调用资源；</p>
+<p>type是资源类型，也可以不写，但最好写上</p>
+<p><em>第二个</em>：加载完成的回调，只返回true或者false，</p>
+<p><em>第三个</em>：加载过程的回调，返回的是数字，从0-100。</p>
+<p>上一下完整的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;GameMain&#125; <span class="keyword">from</span> <span class="string">'./base/GameMain.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123;ResLoader&#125; <span class="keyword">from</span> <span class="string">'./utils/ResLoader.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123;MainBoard&#125; <span class="keyword">from</span> <span class="string">"./base/MainBoard"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;UserUtils&#125; <span class="keyword">from</span> <span class="string">"./utils/UserUtils"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;GlobalData&#125; <span class="keyword">from</span> <span class="string">"./base/GlobalData"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;GameEvent&#125; <span class="keyword">from</span> <span class="string">"./utils/GameEvent"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;LayoutUtils&#125; <span class="keyword">from</span> <span class="string">"./utils/LayoutUtils"</span>;</span><br><span class="line"></span><br><span class="line">GameMain.init();</span><br><span class="line">Laya.loader.load(<span class="string">"res/atlas/loading.atlas"</span>, Laya.Handler.create(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> resManager = ResLoader.getInstance();</span><br><span class="line">    <span class="keyword">let</span> loading = <span class="keyword">new</span> ui.view.gameLoadingUI();</span><br><span class="line">    Laya.stage.addChild(loading);</span><br><span class="line">    <span class="keyword">let</span> sp_mask = loading.sp_mask;</span><br><span class="line">    sp_mask.optimizeScrollRect = <span class="literal">true</span>;</span><br><span class="line">    resManager.loaded(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> mainBoard = MainBoard.getInstance();</span><br><span class="line">        <span class="keyword">let</span> user = UserUtils.getInstance();</span><br><span class="line">        user.getWxUser(&#123;</span><br><span class="line">            sucFn: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'登陆成功v1.0.0'</span>);</span><br><span class="line">                Laya.stage.addChild(LayoutUtils.getInstance().map.get(<span class="string">"gameStartUI"</span>));</span><br><span class="line">                Laya.stage.removeChild(loading);</span><br><span class="line">                mainBoard.initMainBoard();</span><br><span class="line">                GameEvent.getInstance().bindListenEvent();</span><br><span class="line">                GameEvent.getInstance().remarkGameTime();  </span><br><span class="line">            &#125;, <span class="attr">errFn</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                alert(<span class="string">'登陆失败'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;, (e) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> process = <span class="built_in">parseInt</span>(e * <span class="number">100</span>);</span><br><span class="line">        loading.progress_text.text = process + <span class="string">'%'</span>;</span><br><span class="line">        sp_mask.scrollRect = <span class="keyword">new</span> Laya.Rectangle(<span class="number">0</span>, <span class="number">0</span>, <span class="number">5.2</span> * process, <span class="number">24</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>resManager是我自己写的资源加载管理器，做统一资源管理，其实跟这加载一样，只是资源多，封装了一下。</p>
+<p><strong>多说一句：单例模式</strong></p>
+<p>因为这里基于es6的类，常常需要实例化类，像资源加载这种只需要实例化一次的就需要用到js的单例模式，具体实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">ResLoader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance() &#123;</span><br><span class="line">        <span class="keyword">return</span> ResLoader.instance ? ResLoader.instance : ResLoader.instance = <span class="keyword">new</span> ResLoader();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>UI创建</strong></p>
+<p>如果你不想通过它的编辑器创建界面也是可以的，只不过全部用代码来实现比较麻烦，看看他的ui有哪些组件吧，传送门：<a href="https://layaair.ldc.layabox.com/api/?category=UI&amp;class=laya.ui.AsynDialog" target="_blank" rel="noopener">https://layaair.ldc.layabox.com/api/?category=UI&amp;class=laya.ui.AsynDialog</a></p>
+<p><img src="https://oscimg.oschina.net/oscnet/0efb0113ae091c482c8fe08601a1773f92d.jpg" alt=""></p>
+<p>什么Image，Text，Button，Sprite全部自己写也很不爽。不过你可以试试用自己写代码的方式来进行游戏布局，比如我写的一些：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">diyPopup(btnImgs) &#123;</span><br><span class="line">        <span class="keyword">let</span> length = btnImgs.length;</span><br><span class="line">        <span class="keyword">let</span> btnArr=[];</span><br><span class="line">        <span class="keyword">let</span> popupUI = <span class="keyword">this</span>.map.get(<span class="string">'gamePopupUI'</span>);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">          popupUI.removeChildByName(<span class="string">`btn<span class="subst">$&#123;i===<span class="number">0</span>?<span class="string">''</span>:i&#125;</span>`</span>)</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">if</span> (length === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> btn = <span class="keyword">new</span> Laya.Image().size(<span class="number">262</span>, <span class="number">116</span>).pos(<span class="number">250</span>, <span class="number">678</span>);</span><br><span class="line">            btn.skin = btnImgs[<span class="number">0</span>];</span><br><span class="line">            btn.name = <span class="string">'btn'</span>;</span><br><span class="line">            btnArr.push(btn);</span><br><span class="line">            popupUI.addChild(btn);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (length === <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> btn1 = <span class="keyword">new</span> Laya.Image().size(<span class="number">262</span>, <span class="number">116</span>).pos(<span class="number">67</span>, <span class="number">678</span>);</span><br><span class="line">            btn1.name = <span class="string">'btn1'</span>;</span><br><span class="line">            btn1.skin = btnImgs[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">let</span> btn2 = <span class="keyword">new</span> Laya.Image().size(<span class="number">262</span>, <span class="number">116</span>).pos(<span class="number">443</span>, <span class="number">678</span>);</span><br><span class="line">            btn2.name = <span class="string">'btn2'</span>;</span><br><span class="line">            btn2.skin = btnImgs[<span class="number">1</span>];</span><br><span class="line">            btnArr.push(btn1,btn2);</span><br><span class="line">            popupUI.addChild(btn1);</span><br><span class="line">            popupUI.addChild(btn2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遮罩</span></span><br><span class="line">        popupUI.bg_wrap.graphics.clear();</span><br><span class="line">        popupUI.bg_wrap.graphics.drawRect(<span class="number">0</span>, <span class="number">0</span>, Laya.stage.width, Laya.stage.height, <span class="string">"#000000"</span>);</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="attr">popupUI</span>:popupUI,<span class="attr">btnArr</span>:btnArr&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义</span></span><br><span class="line">    diyIcon(iconArr) &#123;</span><br><span class="line">        <span class="keyword">let</span> length = iconArr.length;</span><br><span class="line">        <span class="keyword">let</span> mainUI = <span class="keyword">this</span>.map.get(<span class="string">'gameMainUI'</span>);</span><br><span class="line">        mainUI.icon_wrap.destroyChildren();</span><br><span class="line">        <span class="keyword">let</span> iconUI = [];</span><br><span class="line">        <span class="keyword">if</span> (length === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> icon = <span class="keyword">new</span> Laya.Image().size(<span class="number">77</span>, <span class="number">68</span>).pos(<span class="number">258</span>, <span class="number">0</span>);</span><br><span class="line">            icon.skin = iconArr[<span class="number">0</span>];</span><br><span class="line">            mainUI.icon_wrap.addChild(icon);</span><br><span class="line">            iconUI.push(icon)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (length === <span class="number">2</span>) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; length;i++)&#123;</span><br><span class="line">               <span class="keyword">let</span> icon = <span class="keyword">new</span> Laya.Image().size(<span class="number">77</span>, <span class="number">68</span>).pos(<span class="number">207</span>+i*(<span class="number">30</span>+<span class="number">77</span>), <span class="number">0</span>);</span><br><span class="line">               icon.skin = iconArr[i];</span><br><span class="line">               mainUI.icon_wrap.addChild(icon);</span><br><span class="line">               iconUI.push(icon)</span><br><span class="line">           &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; length;i++)&#123;</span><br><span class="line">                <span class="keyword">let</span> icon = <span class="keyword">new</span> Laya.Image().size(<span class="number">77</span>, <span class="number">68</span>).pos(<span class="number">169</span>+i*(<span class="number">15</span>+<span class="number">77</span>), <span class="number">0</span>);</span><br><span class="line">                icon.skin = iconArr[i];</span><br><span class="line">                mainUI.icon_wrap.addChild(icon);</span><br><span class="line">                iconUI.push(icon)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> iconUI;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>还是用编辑器拖拖拉拉舒服，点击view新建页面/场景，最好把逻辑类勾，本人当时没有勾上，就全部发布到一个文件里面去了，下面会说的。然后直接往上怼：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/61aa6b4434d68be76cc53466e82694d38a7.jpg" alt=""></p>
+<p>做完之后按f12发布，就会发布到src/ui下面的layaUI.max.all.js里面。</p>
+<p>接下来在代码里面引用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gameMain= <span class="keyword">new</span> ui.view.gameMainUI();</span><br><span class="line">Laya.stage.addChild(gameMain);<span class="comment">//添加到舞台，removeChild()你懂吧</span></span><br></pre></td></tr></table></figure>
+<p>如此，页面场景也可以自己搭建好了。其实还有一部分是粒子和动画，但是我觉得这个可以看看官网给的教程（我司有做粒子和动画的，我不会），传送门：<a href="https://ldc.layabox.com/doc/?nav=zh-js-2-1-10" target="_blank" rel="noopener">https://ldc.layabox.com/doc/?nav=zh-js-2-1-10</a>。</p>
+<p>这一入门部分也就告一段落，基本上可自己写出一个demo。下一篇准备讲讲使用laya的API以及其中遇到的巨坑。laya系列完了之后准备再写一个egret入门与坑的系列。如果有错误的地方，还请多多指教。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20160520/node-express-fileupload/" rel="next" title="node+express使用multiparty实现文件上传">
+                <i class="fa fa-chevron-left"></i> node+express使用multiparty实现文件上传
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/20180721/laya-api/" rel="prev" title="laya核心API五分钟速记">
+                laya核心API五分钟速记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180712/laya/';
+            this.page.identifier = '20180712/laya/';
+            this.page.title = 'laya入门，这一篇应该够了';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'https://www.wxqdoit.com/20180712/laya/';
+                this.page.identifier = '20180712/laya/';
+                this.page.title = 'laya入门，这一篇应该够了';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180712/laya/';
+            this.page.identifier = '20180712/laya/';
+            this.page.title = 'laya入门，这一篇应该够了';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/card.jpg" alt="wxqdoit">
+            
+              <p class="site-author-name" itemprop="name">wxqdoit</p>
+              <p class="site-description motion-element" itemprop="description">神啊，救救我吧！</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.wxqdoit.cn" target="_blank" title="Home" data-balloon="Home" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-home"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wxqdoit" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/3266694004" target="_blank" title="Weibo" data-balloon="Weibo" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装"><span class="nav-number">2.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目创建与目录结构"><span class="nav-number">3.</span> <span class="nav-text">项目创建与目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">4.</span> <span class="nav-text">环境配置</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#开发入门"><span class="nav-number"></span> <span class="nav-text">开发入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#舞台搭建与适配"><span class="nav-number">1.</span> <span class="nav-text">舞台搭建与适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于图集打包与资源加载策略"><span class="nav-number">2.</span> <span class="nav-text">关于图集打包与资源加载策略</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>小站已顽强存活<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>必须洗净一切往事，否则你永远无法清楚自由地看这个世界</p>
+
+<p>© <span itemprop="copyrightYear">2019</span> Hey, wxqdoit.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 支持.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a>
+    蜀ICP备16030039号-3.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">wxqdoit</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v="></script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="wxqdoit">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="下载安装：1、EgretLauncher传送门：https://egret.com/downloads/engine.html 下载完成按照要求一步步安装就可以了。 引擎管理工具，包括版本管理，项目打包，项目创建，其他工具下载安装等。 2、Egret Wing打开EgretLauncher引擎管理工具，下载安装egret wing，（这里需要账号密码登录，如果没有就去注册一个吧！ egret wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="egret入门，这一篇应该够了">
+<meta property="og:url" content="https://www.wxqdoit.com/20180802/egretlearn/index.html">
+<meta property="og:site_name" content="Hey, wxqdoit">
+<meta property="og:description" content="下载安装：1、EgretLauncher传送门：https://egret.com/downloads/engine.html 下载完成按照要求一步步安装就可以了。 引擎管理工具，包括版本管理，项目打包，项目创建，其他工具下载安装等。 2、Egret Wing打开EgretLauncher引擎管理工具，下载安装egret wing，（这里需要账号密码登录，如果没有就去注册一个吧！ egret wi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/4cf031884fbf93ed9edfb80c4ba9c6aae18.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/1e9509e3eaad5cf9193de6c35c895946ae4.jpg">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/f2c9d1c6ea1e092ef5c386f90054a9e41e3.jpg">
+<meta property="og:updated_time" content="2019-02-15T17:21:45.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="egret入门，这一篇应该够了">
+<meta name="twitter:description" content="下载安装：1、EgretLauncher传送门：https://egret.com/downloads/engine.html 下载完成按照要求一步步安装就可以了。 引擎管理工具，包括版本管理，项目打包，项目创建，其他工具下载安装等。 2、Egret Wing打开EgretLauncher引擎管理工具，下载安装egret wing，（这里需要账号密码登录，如果没有就去注册一个吧！ egret wi">
+<meta name="twitter:image" content="https://oscimg.oschina.net/oscnet/4cf031884fbf93ed9edfb80c4ba9c6aae18.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '10/21/2018 08:00:00',
+    onlineAPI: '',
+    site: {
+      title: 'Hey, wxqdoit',
+      subtitle: '',
+      author: 'wxqdoit'
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: 'w(゜Д゜)w 啊啊',
+      hide_text: '┗|｀O′|┛ 嗷~~'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://www.wxqdoit.com/20180802/egretlearn/">
+
+
+
+
+
+  <title>egret入门，这一篇应该够了 | Hey, wxqdoit</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-navicon"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/wxqdoit.jpg" alt="wxqdoit">
+    <h2 class="site-master-description" itemprop="description">
+        Bug开发者 | 母胎Solo | 家境贫寒 | 前端弱鸡
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">08月</div>
+			<div class="post-day">02</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+        <a href="/categories/技术栈/" itemprop="url" rel="index">
+          <span itemprop="name">技术栈</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wxqdoit.com/20180802/egretlearn/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxqdoit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wxqdoit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey, wxqdoit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">egret入门，这一篇应该够了</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T14:46:15+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术栈/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="下载安装："><a href="#下载安装：" class="headerlink" title="下载安装："></a><strong>下载安装：</strong></h2><h3 id="1、EgretLauncher"><a href="#1、EgretLauncher" class="headerlink" title="1、EgretLauncher"></a><strong>1、EgretLauncher</strong></h3><p>传送门：<a href="https://egret.com/downloads/engine.html" target="_blank" rel="noopener">https://egret.com/downloads/engine.html</a></p>
+<p>下载完成按照要求一步步安装就可以了。</p>
+<p>引擎管理工具，包括版本管理，项目打包，项目创建，其他工具下载安装等。</p>
+<h3 id="2、Egret-Wing"><a href="#2、Egret-Wing" class="headerlink" title="2、Egret Wing"></a><strong>2、Egret Wing</strong></h3><p>打开EgretLauncher引擎管理工具，下载安装egret wing，（这里需要账号密码登录，如果没有就去注册一个吧！</p>
+<p>egret wing支持可视化创建、编辑和管理项目 EUI，以及 TS 代码编写和断点调试。</p>
+<a id="more"></a>
+<h3 id="3、更多工具"><a href="#3、更多工具" class="headerlink" title="3、更多工具"></a><strong>3、更多工具</strong></h3><p>egret的工具非常多，上述安装的wing是最主要的开发工具，其余的安装方法也差不多，简单用法介绍可以参考官网的介绍，这里不赘述。</p>
+<p>传送门：<a href="https://www.egret.com/products/" target="_blank" rel="noopener">https://www.egret.com/products/</a></p>
+<h2 id="项目创建"><a href="#项目创建" class="headerlink" title="项目创建"></a><strong>项目创建</strong></h2><h3 id="1、项目类型"><a href="#1、项目类型" class="headerlink" title="1、项目类型"></a><strong>1、项目类型</strong></h3><p>打开EgretLauncher，选中项目，点击创建项目：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/4cf031884fbf93ed9edfb80c4ba9c6aae18.jpg" alt=""></p>
+<p>创建项目有两个选项，游戏项目和EUI项目，主要是勾选的拓展库不同，建议创建时不管是哪种，都将eui 和game两个库都勾选上。</p>
+<p>除了默认勾选的，其他按需求勾选。</p>
+<p>舞台尺寸一般按照美术出图设置。</p>
+<h3 id="2、缩放模式"><a href="#2、缩放模式" class="headerlink" title="2、缩放模式"></a><strong>2、缩放模式</strong></h3><p>有很多种，具体介绍可以看官网介绍，可以说非常详细了</p>
+<p>传送门 <a href="http://developer.egret.com/cn/github/egret-docs/Engine2D/screenAdaptation/zoomMode/index.html" target="_blank" rel="noopener">http://developer.egret.com/cn/github/egret-docs/Engine2D/screenAdaptation/zoomMode/index.html</a></p>
+<p>旋转方式一般就横屏竖屏或者自动模式，最后创建项目。</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a><strong>目录结构</strong></h2><p>打开创建的项目：</p>
+<p><img src="https://oscimg.oschina.net/oscnet/1e9509e3eaad5cf9193de6c35c895946ae4.jpg" alt=""></p>
+<p><strong>.wing文件夹</strong> 存放使用wing打开的配置文件</p>
+<p><strong>bin-debug文件夹</strong> 存放调试时将ts转为js文件</p>
+<p><strong>bin-release文件夹</strong> 存放打包输出文件(打包后才会出现)</p>
+<p><strong>libs文件夹</strong> 存放引擎源码以及三方库文件</p>
+<p><strong>resources文件夹</strong> 存放资源文件包括图片、json、动画、exml等文件</p>
+<p><strong>scripts文件夹</strong> 存放一些配置文件，比如android ios wxgame的配置脚本文件</p>
+<p><strong>src文件夹</strong> 存放开发源码</p>
+<p><strong>template文件夹</strong> 存放模板文件</p>
+<p><strong>egretProperties.json文件</strong> 三方库的配置文件</p>
+<p>其他的可以不用管了，如果还需要详细了解的：</p>
+<p>传送门：<a href="http://developer.egret.com/cn/github/egret-docs/Engine2D/getStarted/helloWorld/index.html" target="_blank" rel="noopener">http://developer.egret.com/cn/github/egret-docs/Engine2D/getStarted/helloWorld/index.html</a></p>
+<h2 id="项目入口"><a href="#项目入口" class="headerlink" title="项目入口"></a><strong>项目入口</strong></h2><p><strong>打开项目进入src文件目录</strong></p>
+<p>以下是我修改添加注释后的源码（Main.ts）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">eui</span>.<span class="title">UILayer</span> </span>&#123;</span><br><span class="line">    protected createChildren(): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.createChildren();</span><br><span class="line">        egret.lifecycle.addLifecycleListener(<span class="function">(<span class="params">context</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// custom lifecycle plugin</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">//inject the custom material parser</span></span><br><span class="line">        <span class="comment">//注入自定义的素材解析器</span></span><br><span class="line">        <span class="keyword">let</span> assetAdapter = <span class="keyword">new</span> AssetAdapter();</span><br><span class="line">        egret.registerImplementation(<span class="string">"eui.IAssetAdapter"</span>, assetAdapter);</span><br><span class="line">        egret.registerImplementation(<span class="string">"eui.IThemeAdapter"</span>, <span class="keyword">new</span> ThemeAdapter());</span><br><span class="line">        <span class="keyword">this</span>.runGame().catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(e);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="keyword">async</span> runGame() &#123;</span><br><span class="line">        <span class="keyword">await</span> <span class="keyword">this</span>.loadResource()</span><br><span class="line">        <span class="comment">//this.createGameScene();</span></span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> RES.getResAsync(<span class="string">"description_json"</span>)</span><br><span class="line">        <span class="keyword">const</span> gameui:GameUi = <span class="keyword">new</span> GameUi();</span><br><span class="line">        <span class="keyword">this</span>.stage.addChild(gameui)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//资源加载函数，</span></span><br><span class="line">    private <span class="keyword">async</span> loadResource() &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载页面添加到舞台</span></span><br><span class="line">            <span class="keyword">const</span> loadingView = <span class="keyword">new</span> LoadingUI();</span><br><span class="line">            <span class="keyword">this</span>.stage.addChild(loadingView);</span><br><span class="line">            <span class="comment">//加载默认资源，json文件，里面记录着所有的图片数据</span></span><br><span class="line">            <span class="keyword">await</span> RES.loadConfig(<span class="string">"resource/default.res.json"</span>, <span class="string">"resource/"</span>);</span><br><span class="line">            <span class="comment">//加载皮肤文件</span></span><br><span class="line">            <span class="keyword">await</span> <span class="keyword">this</span>.loadTheme();</span><br><span class="line">            <span class="comment">//加载资源组</span></span><br><span class="line">            <span class="keyword">await</span> RES.loadGroup(<span class="string">"preload"</span>, <span class="number">0</span>, loadingView);</span><br><span class="line">            <span class="comment">//加载完成后将加载页面从舞台移除</span></span><br><span class="line">            <span class="keyword">this</span>.stage.removeChild(loadingView);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'资源加载完成'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private loadTheme() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">//加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。</span></span><br><span class="line">            <span class="keyword">let</span> theme = <span class="keyword">new</span> eui.Theme(<span class="string">"resource/default.thm.json"</span>, <span class="keyword">this</span>.stage);</span><br><span class="line">            theme.addEventListener(eui.UIEvent.COMPLETE, () =&gt; &#123;</span><br><span class="line">                resolve();</span><br><span class="line">            &#125;, <span class="keyword">this</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    private textfield: egret.TextField;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建游戏场景</span></span><br><span class="line"><span class="comment">     * Create a game scene</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    private createGameScene() &#123;</span><br><span class="line">        <span class="keyword">let</span> sky = <span class="keyword">this</span>.createBitmapByName(<span class="string">"dabg@3x_png"</span>);</span><br><span class="line">        <span class="keyword">this</span>.addChild(sky);</span><br><span class="line">        <span class="keyword">let</span> stageW = <span class="keyword">this</span>.stage.stageWidth;</span><br><span class="line">        <span class="keyword">let</span> stageH = <span class="keyword">this</span>.stage.stageHeight;</span><br><span class="line">        sky.width = stageW;</span><br><span class="line">        sky.height = stageH;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。</span></span><br><span class="line"><span class="comment">     * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    private createBitmapByName(name: string) &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">new</span> egret.Bitmap();</span><br><span class="line">        <span class="keyword">let</span> texture: egret.Texture = RES.getRes(name);</span><br><span class="line">        result.texture = texture;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 描述文件加载成功，开始播放动画</span></span><br><span class="line"><span class="comment">     * Description file loading is successful, start to play the animation</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    private startAnimation(result: string[]) &#123;</span><br><span class="line">        <span class="keyword">let</span> parser = <span class="keyword">new</span> egret.HtmlTextParser();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> textflowArr = result.map(<span class="function"><span class="params">text</span> =&gt;</span> parser.parse(text));</span><br><span class="line">        <span class="keyword">let</span> textfield = <span class="keyword">this</span>.textfield;</span><br><span class="line">        <span class="keyword">let</span> count = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">let</span> change = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span> (count &gt;= textflowArr.length) &#123;</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> textFlow = textflowArr[count];</span><br><span class="line">            <span class="comment">// 切换描述内容</span></span><br><span class="line">            <span class="comment">// Switch to described content</span></span><br><span class="line">            textfield.textFlow = textFlow;</span><br><span class="line">            <span class="keyword">let</span> tw = egret.Tween.get(textfield);</span><br><span class="line">            tw.to(&#123; <span class="string">"alpha"</span>: <span class="number">1</span> &#125;, <span class="number">200</span>);</span><br><span class="line">            tw.wait(<span class="number">2000</span>);</span><br><span class="line">            tw.to(&#123; <span class="string">"alpha"</span>: <span class="number">0</span> &#125;, <span class="number">200</span>);</span><br><span class="line">            tw.call(change, <span class="keyword">this</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        change();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>资源适配器（AssetAdapter .ts）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AssetAdapter</span> <span class="title">implements</span> <span class="title">eui</span>.<span class="title">IAssetAdapter</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @language zh_CN</span></span><br><span class="line"><span class="comment">     * 解析素材</span></span><br><span class="line"><span class="comment">     * @param source 待解析的新素材标识符</span></span><br><span class="line"><span class="comment">     * @param compFunc 解析完成回调函数，示例：callBack(content:any,source:string):void;</span></span><br><span class="line"><span class="comment">     * @param thisObject callBack的 this 引用</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    public getAsset(source: string, <span class="attr">compFunc</span>:<span class="built_in">Function</span>, <span class="attr">thisObject</span>: any): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">onGetRes</span>(<span class="params">data: any</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">            compFunc.call(thisObject, data, source);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (RES.hasRes(source)) &#123;</span><br><span class="line">            <span class="keyword">let</span> data = RES.getRes(source);</span><br><span class="line">            <span class="keyword">if</span> (data) &#123;</span><br><span class="line">                onGetRes(data);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                RES.getResAsync(source, onGetRes, <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            RES.getResByUrl(source, onGetRes, <span class="keyword">this</span>, RES.ResourceItem.TYPE_IMAGE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主题适配器（ThemeAdapter.ts）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThemeAdapter</span> <span class="title">implements</span> <span class="title">eui</span>.<span class="title">IThemeAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析主题</span></span><br><span class="line"><span class="comment">     * @param url 待解析的主题url</span></span><br><span class="line"><span class="comment">     * @param onSuccess 解析完成回调函数，示例：compFunc(e:egret.Event):void;</span></span><br><span class="line"><span class="comment">     * @param onError 解析失败回调函数，示例：errorFunc():void;</span></span><br><span class="line"><span class="comment">     * @param thisObject 回调的this引用</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    public getTheme(url: string, <span class="attr">onSuccess</span>: <span class="built_in">Function</span>, <span class="attr">onError</span>: <span class="built_in">Function</span>, <span class="attr">thisObject</span>: any): <span class="keyword">void</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">onResGet</span>(<span class="params">e: string</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">            onSuccess.call(thisObject, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">onResError</span>(<span class="params">e: RES.ResourceEvent</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (e.resItem.url == url) &#123;</span><br><span class="line">                RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, onResError, <span class="literal">null</span>);</span><br><span class="line">                onError.call(thisObject);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> generateEUI !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            egret.callLater(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                onSuccess.call(thisObject, generateEUI);</span><br><span class="line">            &#125;, <span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, onResError, <span class="literal">null</span>);</span><br><span class="line">            RES.getResByUrl(url, onResGet, <span class="keyword">this</span>, RES.ResourceItem.TYPE_TEXT);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="keyword">var</span> generateEUI: &#123; <span class="attr">paths</span>: string[], <span class="attr">skins</span>: any &#125;</span><br></pre></td></tr></table></figure>
+<p>关于js的异步，依然使用了es7的async与await，用法自行脑补</p>
+<h2 id="关于三方库引入"><a href="#关于三方库引入" class="headerlink" title="关于三方库引入"></a><strong>关于三方库引入</strong></h2><p><strong>打开egretProperties.json</strong></p>
+<p>按照已有的格式以相同的写法将你的三方库路径添加上去，然后在终端执行egret build -e命令</p>
+<p>以引入socket.io为例：</p>
+<p>开发根目录：D:\dev\live-psz</p>
+<p>socket.io目录：D:\dev\socket-libsrc</p>
+<p><img src="https://oscimg.oschina.net/oscnet/f2c9d1c6ea1e092ef5c386f90054a9e41e3.jpg" alt=""></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"socket.io"</span>,</span><br><span class="line">  <span class="attr">"path"</span>: <span class="string">"../socket-libsrc/bin/socket.io"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关于exml主题UI布局"><a href="#关于exml主题UI布局" class="headerlink" title="关于exml主题UI布局"></a><strong>关于exml主题UI布局</strong></h2><p>在resource目录下新建eui_skins文件夹，在下面新建**.exml文件，然后进行布局，</p>
+<p>在default.thm.json确保引入</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"skins"</span>: &#123;&#125;,</span><br><span class="line">	<span class="attr">"autoGenerateExmlsList"</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">"exmls"</span>: [</span><br><span class="line">		<span class="string">"resource/eui_skins/Animation.exml"</span>,</span><br><span class="line">		<span class="string">"resource/eui_skins/AniShowCName.exml"</span>,</span><br><span class="line">		<span class="string">"resource/eui_skins/GameUi.exml"</span>,</span><br><span class="line">		<span class="string">"resource/eui_skins/RoleDetailUi.exml"</span>,</span><br><span class="line">		<span class="string">"resource/eui_skins/RoleUi.exml"</span>,</span><br><span class="line">		<span class="string">"resource/eui_skins/test.exml"</span></span><br><span class="line">	],</span><br><span class="line">	<span class="attr">"path"</span>: <span class="string">"resource/default.thm.json"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在src下面新建对应的ts文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GameUi</span> <span class="keyword">extends</span> <span class="title">eui</span>.<span class="title">Component</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.skinName = <span class="string">"resource/eui_skins/GameUi.exml"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在布局里面命名了相对应的Id，那么</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public gold_group_btn :eui.Group;</span><br><span class="line">public roleContainer: eui.Group;</span><br></pre></td></tr></table></figure>
+<p><strong>如何引用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gameui:GameUi = <span class="keyword">new</span> GameUi();</span><br><span class="line"><span class="keyword">this</span>.stage.addChild(gameui)</span><br></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h2><p>其他涉及到的API可以查看官网文档，如有错误，望斧正，如有疑问，请留言，我会及时回复。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20180721/laya-api/" rel="next" title="laya核心API五分钟速记">
+                <i class="fa fa-chevron-left"></i> laya核心API五分钟速记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/20181021/rng/" rel="prev" title="再见，RNG">
+                再见，RNG <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180802/egretlearn/';
+            this.page.identifier = '20180802/egretlearn/';
+            this.page.title = 'egret入门，这一篇应该够了';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'https://www.wxqdoit.com/20180802/egretlearn/';
+                this.page.identifier = '20180802/egretlearn/';
+                this.page.title = 'egret入门，这一篇应该够了';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180802/egretlearn/';
+            this.page.identifier = '20180802/egretlearn/';
+            this.page.title = 'egret入门，这一篇应该够了';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/card.jpg" alt="wxqdoit">
+            
+              <p class="site-author-name" itemprop="name">wxqdoit</p>
+              <p class="site-description motion-element" itemprop="description">神啊，救救我吧！</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.wxqdoit.cn" target="_blank" title="Home" data-balloon="Home" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-home"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wxqdoit" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/3266694004" target="_blank" title="Weibo" data-balloon="Weibo" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装："><span class="nav-number">1.</span> <span class="nav-text">下载安装：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、EgretLauncher"><span class="nav-number">1.1.</span> <span class="nav-text">1、EgretLauncher</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Egret-Wing"><span class="nav-number">1.2.</span> <span class="nav-text">2、Egret Wing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、更多工具"><span class="nav-number">1.3.</span> <span class="nav-text">3、更多工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目创建"><span class="nav-number">2.</span> <span class="nav-text">项目创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、项目类型"><span class="nav-number">2.1.</span> <span class="nav-text">1、项目类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、缩放模式"><span class="nav-number">2.2.</span> <span class="nav-text">2、缩放模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">3.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目入口"><span class="nav-number">4.</span> <span class="nav-text">项目入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于三方库引入"><span class="nav-number">5.</span> <span class="nav-text">关于三方库引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于exml主题UI布局"><span class="nav-number">6.</span> <span class="nav-text">关于exml主题UI布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>小站已顽强存活<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>必须洗净一切往事，否则你永远无法清楚自由地看这个世界</p>
+
+<p>© <span itemprop="copyrightYear">2019</span> Hey, wxqdoit.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 支持.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a>
+    蜀ICP备16030039号-3.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">wxqdoit</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v="></script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

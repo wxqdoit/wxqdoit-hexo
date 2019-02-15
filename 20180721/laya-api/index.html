@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="wxqdoit">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Node(节点)操作大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。添加节点核心方法： 1234567891011121314151617181920212223/** * 添加子节点。 * @param	node 节点对象 * @return	返回添加的节点 */addChild(node: Node): Node;/** * 批量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laya核心API五分钟速记">
+<meta property="og:url" content="https://www.wxqdoit.com/20180721/laya-api/index.html">
+<meta property="og:site_name" content="Hey, wxqdoit">
+<meta property="og:description" content="Node(节点)操作大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。添加节点核心方法： 1234567891011121314151617181920212223/** * 添加子节点。 * @param	node 节点对象 * @return	返回添加的节点 */addChild(node: Node): Node;/** * 批量">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-15T17:20:45.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="laya核心API五分钟速记">
+<meta name="twitter:description" content="Node(节点)操作大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。添加节点核心方法： 1234567891011121314151617181920212223/** * 添加子节点。 * @param	node 节点对象 * @return	返回添加的节点 */addChild(node: Node): Node;/** * 批量">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '10/21/2018 08:00:00',
+    onlineAPI: '',
+    site: {
+      title: 'Hey, wxqdoit',
+      subtitle: '',
+      author: 'wxqdoit'
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: 'w(゜Д゜)w 啊啊',
+      hide_text: '┗|｀O′|┛ 嗷~~'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://www.wxqdoit.com/20180721/laya-api/">
+
+
+
+
+
+  <title>laya核心API五分钟速记 | Hey, wxqdoit</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-navicon"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/wxqdoit.jpg" alt="wxqdoit">
+    <h2 class="site-master-description" itemprop="description">
+        Bug开发者 | 母胎Solo | 家境贫寒 | 前端弱鸡
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">07月</div>
+			<div class="post-day">21</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+        <a href="/categories/技术栈/" itemprop="url" rel="index">
+          <span itemprop="name">技术栈</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wxqdoit.com/20180721/laya-api/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxqdoit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wxqdoit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey, wxqdoit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">laya核心API五分钟速记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T16:35:10+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术栈/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Node-节点-操作"><a href="#Node-节点-操作" class="headerlink" title="Node(节点)操作"></a>Node(节点)操作</h2><h3 id="大部分的laya-UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。"><a href="#大部分的laya-UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。" class="headerlink" title="大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。"></a>大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。</h3><p><strong>添加节点核心方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加子节点。</span></span><br><span class="line"><span class="comment"> * @param	node 节点对象</span></span><br><span class="line"><span class="comment"> * @return	返回添加的节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">addChild(node: Node): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 批量增加子节点</span></span><br><span class="line"><span class="comment"> * @param	...args 无数子节点。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">addChildren(...args: any[]): <span class="keyword">void</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加子节点到指定的索引位置。</span></span><br><span class="line"><span class="comment"> * @param	node 节点对象。</span></span><br><span class="line"><span class="comment"> * @param	index 索引位置。</span></span><br><span class="line"><span class="comment"> * @return	返回添加的节点。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">addChildAt(node: Node, <span class="attr">index</span>: number): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据子节点对象，获取子节点的索引位置。</span></span><br><span class="line"><span class="comment"> * @param	node 子节点。</span></span><br><span class="line"><span class="comment"> * @return	子节点所在的索引位置。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>注意：添加节点时候，越后添加的层级越高，可以设置zOrder属性调整对象层级。</p>
+<a id="more"></a>
+<p><strong>销毁、删除节点核心方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除子节点。</span></span><br><span class="line"><span class="comment"> * @param	node 子节点</span></span><br><span class="line"><span class="comment"> * @return	被删除的节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">removeChild(node: Node): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从父容器删除自己，如已经被删除不会抛出异常。</span></span><br><span class="line"><span class="comment"> * @return 当前节点（ Node ）对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">removeSelf(): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据子节点名字删除对应的子节点对象，如果找不到不会抛出异常。</span></span><br><span class="line"><span class="comment"> * @param	name 对象名字。</span></span><br><span class="line"><span class="comment"> * @return 查找到的节点（ Node ）对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">removeChildByName(name: string): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据子节点索引位置，删除对应的子节点对象。</span></span><br><span class="line"><span class="comment"> * @param	index 节点索引位置。</span></span><br><span class="line"><span class="comment"> * @return	被删除的节点。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">removeChildAt(index: number): Node;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除指定索引区间的所有子对象。</span></span><br><span class="line"><span class="comment"> * @param	beginIndex 开始索引。</span></span><br><span class="line"><span class="comment"> * @param	endIndex 结束索引。</span></span><br><span class="line"><span class="comment"> * @return 当前节点对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">removeChildren(beginIndex?: number, endIndex?: number): Node;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;销毁此对象。destroy对象默认会把自己从父节点移除，并且清理自身引用关系，等待js自动垃圾回收机制回收。destroy后不能再使用。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;destroy时会移除自身的事情监听，自身的timer监听，移除子对象及从父节点移除自己。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * @param destroyChild	（可选）是否同时销毁子节点，若值为true,则销毁子节点，否则不销毁子节点。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">destroy(destroyChild?: boolean): <span class="keyword">void</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 销毁所有子对象，不销毁自己本身。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">destroyChildren(): <span class="keyword">void</span>;</span><br></pre></td></tr></table></figure>
+<p>注意：如果将节点销毁，则不能再使用，但删除之后的节点依旧可以使用。</p>
+<p><strong>获取节点核心方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据子节点对象，获取子节点的索引位置。</span></span><br><span class="line"><span class="comment"> * @param	node 子节点。</span></span><br><span class="line"><span class="comment"> * @return	子节点所在的索引位置。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">getChildIndex(node: Node): number;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据子节点的名字，获取子节点对象。</span></span><br><span class="line"><span class="comment"> * @param	name 子节点的名字。</span></span><br><span class="line"><span class="comment"> * @return	节点对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">getChildByName(name: string): Node;</span><br></pre></td></tr></table></figure>
+<p>注意：getChildByName方法传入的name，是在创建的时候为节点设置的name，并且只能获取下一级的孩子节点，而不是所有属于当前节点的所有子节点。</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件类型非常多，常用的有：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 定义 mousedown 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> MOUSE_DOWN: string;</span><br><span class="line"><span class="comment">/** 定义 mouseup 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> MOUSE_UP: string;</span><br><span class="line"><span class="comment">/** 定义 click 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> CLICK: string;</span><br><span class="line"><span class="comment">/** 定义 rightmousedown 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> RIGHT_MOUSE_DOWN: string;</span><br><span class="line"><span class="comment">/** 定义 rightmouseup 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> RIGHT_MOUSE_UP: string;</span><br><span class="line"><span class="comment">/** 定义 rightclick 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> RIGHT_CLICK: string;</span><br><span class="line"><span class="comment">/** 定义 mousemove 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> MOUSE_MOVE: string;</span><br><span class="line"><span class="comment">/** 定义 mouseover 事件对象的 type 属性值。*/</span></span><br><span class="line"><span class="keyword">static</span> MOUSE_OVER: string;</span><br></pre></td></tr></table></figure>
+<p>具体可以查看layaAir.d.ts laya.events模块，大概在17316行…….</p>
+<p><strong>事件绑定：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;增加事件侦听器，以使侦听器能够接收事件通知。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;如果侦听鼠标事件，则会自动设置自己和父亲节点的属性 mouseEnabled 的值为 true(如果父节点mouseEnabled=false，则停止设置父节点mouseEnabled属性)。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * @param	type		事件的类型。</span></span><br><span class="line"><span class="comment"> * @param	caller		事件侦听函数的执行域。</span></span><br><span class="line"><span class="comment"> * @param	listener	事件侦听函数。</span></span><br><span class="line"><span class="comment"> * @param	args		（可选）事件侦听函数的回调参数。</span></span><br><span class="line"><span class="comment"> * @return 此 EventDispatcher 对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">on(type: string, <span class="attr">caller</span>: any, <span class="attr">listener</span>: <span class="built_in">Function</span>, args?: <span class="built_in">Array</span>&lt;any&gt;): EventDispatcher;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;增加事件侦听器，以使侦听器能够接收事件通知，此侦听事件响应一次后则自动移除侦听。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;如果侦听鼠标事件，则会自动设置自己和父亲节点的属性 mouseEnabled 的值为 true(如果父节点mouseEnabled=false，则停止设置父节点mouseEnabled属性)。&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * @param	type		事件的类型。</span></span><br><span class="line"><span class="comment"> * @param	caller		事件侦听函数的执行域。</span></span><br><span class="line"><span class="comment"> * @param	listener	事件侦听函数。</span></span><br><span class="line"><span class="comment"> * @param	args		（可选）事件侦听函数的回调参数。</span></span><br><span class="line"><span class="comment"> * @return 此 EventDispatcher 对象。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">once(type: string, <span class="attr">caller</span>: any, <span class="attr">listener</span>: <span class="built_in">Function</span>, args?: <span class="built_in">Array</span>&lt;any&gt;): EventDispatcher;</span><br></pre></td></tr></table></figure>
+<p>注意：多次为同一个节点使用on方法会多次绑定事件，需要了解的是，如果对节点的操作不会有变化，则使用on方法绑定一次即可，如果根据状态条件等因素的不同，则使用once绑定。</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>网络请求也是封装的HttpRequest，比较简单。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发送 HTTP 请求。</span></span><br><span class="line"><span class="comment"> * @param	url				请求的地址。大多数浏览器实施了一个同源安全策略，并且要求这个 URL 与包含脚本的文本具有相同的主机名和端口。</span></span><br><span class="line"><span class="comment"> * @param	data			(default = null)发送的数据。</span></span><br><span class="line"><span class="comment"> * @param	method			(default = "get")用于请求的 HTTP 方法。值包括 "get"、"post"、"head"。</span></span><br><span class="line"><span class="comment"> * @param	responseType	(default = "text")Web 服务器的响应类型，可设置为 "text"、"json"、"xml"、"arraybuffer"。</span></span><br><span class="line"><span class="comment"> * @param	headers			(default = null) HTTP 请求的头部信息。参数形如key-value数组：key是头部的名称，不应该包括空白、冒号或换行；value是头部的值，不应该包括换行。比如["Content-Type", "application/json"]。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">send(url: string, data?: any, method?: string, responseType?: string, headers?: <span class="built_in">Array</span>&lt;any&gt;): <span class="keyword">void</span>;</span><br></pre></td></tr></table></figure>
+<p>一个简单的请求网络数据示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">getList(page,size,url)&#123;</span><br><span class="line">        <span class="keyword">let</span> http = <span class="keyword">new</span> Laya.HttpRequest();</span><br><span class="line">        http.send(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.gd.host&#125;</span><span class="subst">$&#123;url&#125;</span>?userId=<span class="subst">$&#123;<span class="keyword">this</span>.gd.user.id&#125;</span>&amp;page=<span class="subst">$&#123;page&#125;</span>&amp;size=<span class="subst">$&#123;size&#125;</span>`</span>, <span class="string">'GET'</span>);</span><br><span class="line">        http.timeout = <span class="number">1000</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            http.once(Laya.Event.COMPLETE, <span class="keyword">this</span>, (resp) =&gt; &#123;</span><br><span class="line">                resp = <span class="built_in">JSON</span>.parse(resp);</span><br><span class="line">                <span class="keyword">if</span> (resp.meta.code === <span class="number">200</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (resp.data !== <span class="literal">null</span>) &#123;</span><br><span class="line">                        resolve(resp.data)</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        resolve(resp.data);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'服务器错误'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            http.once(Laya.Event.ERROR, <span class="keyword">this</span>, (resp) =&gt; &#123;</span><br><span class="line">                resolve(resp.data);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = <span class="keyword">await</span> EventUtils.getInstance().getList(<span class="keyword">this</span>.currentPage, <span class="keyword">this</span>.size,<span class="string">'/norain/pre/rank/time'</span>);<span class="comment">//请求加载数据</span></span><br></pre></td></tr></table></figure>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p><strong>缓动动画</strong></p>
+<p>缓动类型解释传送门：<a href="https://layaair.ldc.layabox.com/api/?category=Core&amp;class=laya.utils.Ease" target="_blank" rel="noopener">https://layaair.ldc.layabox.com/api/?category=Core&amp;class=laya.utils.Ease</a></p>
+<p>缓动动画演示传送门：<a href="https://layaair.ldc.layabox.com/demo/?category=2d&amp;group=Tween&amp;name=EaseFunctionsDemo" target="_blank" rel="noopener">https://layaair.ldc.layabox.com/demo/?category=2d&amp;group=Tween&amp;name=EaseFunctionsDemo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20180712/laya/" rel="next" title="laya入门，这一篇应该够了">
+                <i class="fa fa-chevron-left"></i> laya入门，这一篇应该够了
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/20180802/egretlearn/" rel="prev" title="egret入门，这一篇应该够了">
+                egret入门，这一篇应该够了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180721/laya-api/';
+            this.page.identifier = '20180721/laya-api/';
+            this.page.title = 'laya核心API五分钟速记';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'https://www.wxqdoit.com/20180721/laya-api/';
+                this.page.identifier = '20180721/laya-api/';
+                this.page.title = 'laya核心API五分钟速记';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20180721/laya-api/';
+            this.page.identifier = '20180721/laya-api/';
+            this.page.title = 'laya核心API五分钟速记';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/card.jpg" alt="wxqdoit">
+            
+              <p class="site-author-name" itemprop="name">wxqdoit</p>
+              <p class="site-description motion-element" itemprop="description">神啊，救救我吧！</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.wxqdoit.cn" target="_blank" title="Home" data-balloon="Home" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-home"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wxqdoit" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/3266694004" target="_blank" title="Weibo" data-balloon="Weibo" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-节点-操作"><span class="nav-number">1.</span> <span class="nav-text">Node(节点)操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大部分的laya-UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。"><span class="nav-number">1.1.</span> <span class="nav-text">大部分的laya UI组件都可以看做节点，可以看做web开发中，使用JavaScript对html节点进行操作。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">2.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">3.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">4.</span> <span class="nav-text">动画</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>小站已顽强存活<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>必须洗净一切往事，否则你永远无法清楚自由地看这个世界</p>
+
+<p>© <span itemprop="copyrightYear">2019</span> Hey, wxqdoit.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 支持.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a>
+    蜀ICP备16030039号-3.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">wxqdoit</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v="></script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="wxqdoit">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件上传在一个项目中是相对于比较基础的功能，今天分享一下自己是如何在nodejs中使用中间件multiparty实现文件上传的。nodejs环境的搭建就不赘述了，直奔主题吧！ 第一步：引入express等需要用到的模块express，jade等模块都需要自己手动使用npm命令在控制台安装，如npm install express。在这里用的是jade模板引擎。 （文件 demo.js） 12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node+express使用multiparty实现文件上传">
+<meta property="og:url" content="https://www.wxqdoit.com/20160520/node-express-fileupload/index.html">
+<meta property="og:site_name" content="Hey, wxqdoit">
+<meta property="og:description" content="文件上传在一个项目中是相对于比较基础的功能，今天分享一下自己是如何在nodejs中使用中间件multiparty实现文件上传的。nodejs环境的搭建就不赘述了，直奔主题吧！ 第一步：引入express等需要用到的模块express，jade等模块都需要自己手动使用npm命令在控制台安装，如npm install express。在这里用的是jade模板引擎。 （文件 demo.js） 12345">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/152414_pjim_2667208.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/152821_Um1y_2667208.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/154633_l6eP_2667208.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/155841_HEaG_2667208.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/160945_nB6I_2667208.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2016/0520/161621_Qn6G_2667208.png">
+<meta property="og:updated_time" content="2019-02-15T17:20:45.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node+express使用multiparty实现文件上传">
+<meta name="twitter:description" content="文件上传在一个项目中是相对于比较基础的功能，今天分享一下自己是如何在nodejs中使用中间件multiparty实现文件上传的。nodejs环境的搭建就不赘述了，直奔主题吧！ 第一步：引入express等需要用到的模块express，jade等模块都需要自己手动使用npm命令在控制台安装，如npm install express。在这里用的是jade模板引擎。 （文件 demo.js） 12345">
+<meta name="twitter:image" content="http://static.oschina.net/uploads/space/2016/0520/152414_pjim_2667208.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '10/21/2018 08:00:00',
+    onlineAPI: '',
+    site: {
+      title: 'Hey, wxqdoit',
+      subtitle: '',
+      author: 'wxqdoit'
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: 'w(゜Д゜)w 啊啊',
+      hide_text: '┗|｀O′|┛ 嗷~~'
+    }
+  };
+</script>
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="https://www.wxqdoit.com/20160520/node-express-fileupload/">
+
+
+
+
+
+  <title>node+express使用multiparty实现文件上传 | Hey, wxqdoit</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48084758-7', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-navicon"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>H</span><span>e</span><span>y</span><span>,</span><span> </span><span>w</span><span>x</span><span>q</span><span>d</span><span>o</span><span>i</span><span>t</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/wxqdoit.jpg" alt="wxqdoit">
+    <h2 class="site-master-description" itemprop="description">
+        Bug开发者 | 母胎Solo | 家境贫寒 | 前端弱鸡
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">05月</div>
+			<div class="post-day">20</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+        <a href="/categories/技术栈/" itemprop="url" rel="index">
+          <span itemprop="name">技术栈</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wxqdoit.com/20160520/node-express-fileupload/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxqdoit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wxqdoit.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey, wxqdoit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">node+express使用multiparty实现文件上传</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-20T16:22:00+08:00">
+                2016-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术栈/" itemprop="url" rel="index">
+                    <span itemprop="name">技术栈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">•</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>文件上传在一个项目中是相对于比较基础的功能，今天分享一下自己是如何在nodejs中使用中间件multiparty实现文件上传的。nodejs环境的搭建就不赘述了，直奔主题吧！</p>
+<p>第一步：引入express等需要用到的模块express，jade等模块都需要自己手动使用npm命令在控制台安装，如npm install express。在这里用的是jade模板引擎。</p>
+<p>（文件 demo.js）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);<span class="comment">//导入express模块</span></span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);<span class="comment">//路径配置模块</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)<span class="comment">//页面传递参数解析</span></span><br><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);<span class="comment">//mysql模块</span></span><br><span class="line"><span class="keyword">var</span> multiparty = <span class="built_in">require</span>(<span class="string">'multiparty'</span>);<span class="comment">//文件上传模块</span></span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express(); </span><br><span class="line"><span class="keyword">var</span> port = <span class="number">3000</span>;<span class="comment">//端口号</span></span><br><span class="line"></span><br><span class="line">app.set(<span class="string">"views"</span>,<span class="string">"views/pages/"</span>);<span class="comment">//设置视图文件路径</span></span><br><span class="line">app.set(<span class="string">"view engine"</span>,<span class="string">"jade"</span>);<span class="comment">//设置模板引擎</span></span><br><span class="line">app.use(express.static(path.join(__dirname,<span class="string">'bower_components'</span>)))<span class="comment">//设置静态文件路径</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>,&#125;))</span><br><span class="line">app.listen(port);<span class="comment">//监听端口</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"start..."</span>+port);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'连接开始'</span>);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/index"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">	res.send(<span class="string">"hello"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>然后我们就可以在控制台启动服务 node demo，访问路径<a href="http://localhost:3000/index就可以看到结果了" target="_blank" rel="noopener">http://localhost:3000/index就可以看到结果了</a></p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/152414_pjim_2667208.png" alt=""></p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/152821_Um1y_2667208.png" alt=""></p>
+<p>开始编写html代码(因为使用的jade模板引擎，所以按照jade语法编写)主要是表单提交，关于样式代码就不解释了。代码和浏览器效果如下，其中代码有几个地方要解释一下,enctype=”multipart/form-data”这一段代码必须要加上，用于表单里图片上传，action = “/demo”代表表单提交处理的路径。并把后台的get 请求代码附上</p>
+<p>（文件demo.jade）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">div.con</span><br><span class="line">		form.loginForm(method = &quot;post&quot;,enctype=&quot;multipart/form-data&quot; ,action = &apos;/demo&apos;)</span><br><span class="line">			div.upload</span><br><span class="line">				span 姓名:</span><br><span class="line">					input.stuMsg.stu_name(type = &quot;text&quot;,name = &quot;name&quot;,placeholder = &quot;姓名&quot;)</span><br><span class="line">			div.upload			</span><br><span class="line">				span 学号:</span><br><span class="line">					input.stuMsg.stu_number(type = &quot;text&quot;,name = &quot;number&quot;,placeholder = &quot;学号&quot;)</span><br><span class="line">			div.upload</span><br><span class="line">				span 性别:</span><br><span class="line">					input.stuMsg.stu_sex(type = &quot;text&quot;,name = &quot;sex&quot;,placeholder = &quot;性别&quot;)</span><br><span class="line">			div.upload</span><br><span class="line">				span 年龄:</span><br><span class="line">					input.stuMsg.stu_age(type = &quot;text&quot;,name = &quot;age&quot;,placeholder = &quot;年龄&quot;)</span><br><span class="line">			div.upload#containimg</span><br><span class="line">				span 头像:</span><br><span class="line">					input.stuMsg.stu_img(type = &quot;file&quot;,name = &quot;upfiles&quot;,multiple=&apos;mutiple&apos;)		</span><br><span class="line">			div.upload</span><br><span class="line">				input.stuMsg.addmsg(type = &quot;submit&quot;,value = &quot;录入&quot;)</span><br></pre></td></tr></table></figure>
+<p>（文件app.js）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/demo"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">	res.render(<span class="string">'demo'</span>,&#123;&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/154633_l6eP_2667208.png" alt=""></p>
+<p>接着开始连接数据库，我使用的市mysql，同样需要引入模块。数据库里面的字段有id name number sex age img</p>
+<p>（文件demo.js）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建连接数据库</span></span><br><span class="line"><span class="keyword">var</span> conn = mysql.createConnection(&#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    database:<span class="string">'stu_manage_system'</span>,</span><br><span class="line">    port: <span class="number">3306</span>,</span><br><span class="line">&#125;);</span><br><span class="line">conn.connect();<span class="comment">//连接数据库</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/155841_HEaG_2667208.png" alt=""><br>然后开始编写文件上传的核心代码：</p>
+<p>（文件demo.js）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">"/demo"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> insertSQL = <span class="string">'insert into student values(0,?,?,?,?,?)'</span>;</span><br><span class="line">	<span class="keyword">var</span> insertSQL_params = [];	</span><br><span class="line">	<span class="keyword">var</span> form = <span class="keyword">new</span> multiparty.Form();<span class="comment">//实例一个multiparty</span></span><br><span class="line">    form.uploadDir = __dirname+<span class="string">"/bower_components/uploads/"</span>;<span class="comment">//设置文件储存路径</span></span><br><span class="line">    <span class="comment">//开始解析前台传过来的文件</span></span><br><span class="line">  	form.parse(req, <span class="function"><span class="keyword">function</span>(<span class="params">err, fields, files</span>) </span>&#123;</span><br><span class="line">  		<span class="keyword">for</span> (<span class="keyword">var</span> item <span class="keyword">in</span> fields)&#123;</span><br><span class="line">  			insertSQL_params.push(fields[item][<span class="number">0</span>])</span><br><span class="line">  			<span class="built_in">console</span>.log(fields[item][<span class="number">0</span>])</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="keyword">var</span> filesTmp = <span class="built_in">JSON</span>.stringify(files);</span><br><span class="line">      	<span class="keyword">var</span> pr = <span class="built_in">JSON</span>.parse(filesTmp)</span><br><span class="line">  		<span class="built_in">console</span>.log(pr.upfiles.length)</span><br><span class="line">      	<span class="keyword">if</span>(err)&#123;</span><br><span class="line">        	<span class="built_in">console</span>.log(<span class="string">'parse error: '</span> + err);</span><br><span class="line">      	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; pr.upfiles.length ; i++) &#123;</span><br><span class="line">		        <span class="keyword">var</span> inputFile = files.upfiles[i];<span class="comment">//获取第一个文件</span></span><br><span class="line">		        <span class="keyword">var</span> finalname = inputFile.originalFilename;</span><br><span class="line">		        insertSQL_params.push(finalname)</span><br><span class="line">		        <span class="keyword">var</span> new_name =__dirname+<span class="string">"/bower_components/uploads/"</span>+finalname;<span class="comment">//获取文件名</span></span><br><span class="line">		        <span class="built_in">console</span>.log(new_name)</span><br><span class="line">		        <span class="keyword">var</span> old_name = inputFile.path;<span class="comment">//获取文件路径</span></span><br><span class="line">		        <span class="built_in">console</span>.log(old_name)</span><br><span class="line">				fs.renameSync(old_name,new_name);	            			</span><br><span class="line">      		&#125;</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="comment">//添加数据到数据库</span></span><br><span class="line">     	conn.query(insertSQL,insertSQL_params, <span class="function"><span class="keyword">function</span> (<span class="params">err2, rows</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (err2)&#123;</span><br><span class="line">	            <span class="built_in">console</span>.log(err2);</span><br><span class="line">	        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	        	<span class="built_in">console</span>.log(<span class="string">"成功"</span>)</span><br><span class="line">	        &#125;</span><br><span class="line">		&#125;)</span><br><span class="line">      	res.send(<span class="string">"成功"</span>)  			 		</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中有些地方解释一下：</p>
+<p>首先实例一个multiparty赋给form，</p>
+<p>form.parse(req，callback)的回调函数三个参数，其中fields是一个对象，表示表单中非文件的数据</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/160945_nB6I_2667208.png" alt=""></p>
+<p>files参数也是一个对象，他包含了文件的所有信息</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0520/161621_Qn6G_2667208.png" alt=""></p>
+<p>JSON.parse用于从一个字符串中解析出json对象JSON.stringify则相反</p>
+<p>通过originalFilename获取文件的原始名，最后将文件信息存到数据库。</p>
+<p>demo.jsd的完整代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);<span class="comment">//导入express模块</span></span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);<span class="comment">//路径配置模块</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)<span class="comment">//页面传递参数解析</span></span><br><span class="line"><span class="keyword">var</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);<span class="comment">//mysql模块</span></span><br><span class="line"><span class="keyword">var</span> multiparty = <span class="built_in">require</span>(<span class="string">'multiparty'</span>);<span class="comment">//文件上传模块</span></span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express(); </span><br><span class="line"><span class="keyword">var</span> port = <span class="number">3000</span>;<span class="comment">//端口号</span></span><br><span class="line"></span><br><span class="line">app.set(<span class="string">"views"</span>,<span class="string">"views/pages/"</span>);<span class="comment">//设置视图文件路径</span></span><br><span class="line">app.set(<span class="string">"view engine"</span>,<span class="string">"jade"</span>);<span class="comment">//设置模板引擎</span></span><br><span class="line">app.use(express.static(path.join(__dirname,<span class="string">'bower_components'</span>)))<span class="comment">//设置静态文件路径</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>: <span class="literal">true</span>,&#125;))</span><br><span class="line">app.listen(port);<span class="comment">//监听端口</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"start..."</span>+port);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'连接开始'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建连接数据库</span></span><br><span class="line"><span class="keyword">var</span> conn = mysql.createConnection(&#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    database:<span class="string">'stu_manage_system'</span>,</span><br><span class="line">    port: <span class="number">3306</span>,</span><br><span class="line">&#125;);</span><br><span class="line">conn.connect();<span class="comment">//连接数据库 </span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/demo"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">	res.render(<span class="string">'demo'</span>,&#123;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">"/demo"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> insertSQL = <span class="string">'insert into student values(0,?,?,?,?,?)'</span>;</span><br><span class="line">	<span class="keyword">var</span> insertSQL_params = [];	</span><br><span class="line">	<span class="keyword">var</span> form = <span class="keyword">new</span> multiparty.Form();<span class="comment">//实例一个multiparty</span></span><br><span class="line">    form.uploadDir = __dirname+<span class="string">"/bower_components/uploads/"</span>;<span class="comment">//设置文件储存路径</span></span><br><span class="line">    <span class="comment">//开始解析前台传过来的文件</span></span><br><span class="line">  	form.parse(req, <span class="function"><span class="keyword">function</span>(<span class="params">err, fields, files</span>) </span>&#123;</span><br><span class="line">  		<span class="built_in">console</span>.log(fields)</span><br><span class="line">  		<span class="keyword">for</span> (<span class="keyword">var</span> item <span class="keyword">in</span> fields)&#123;</span><br><span class="line">  			insertSQL_params.push(fields[item][<span class="number">0</span>])</span><br><span class="line">  			<span class="built_in">console</span>.log(fields[item][<span class="number">0</span>])</span><br><span class="line">  		&#125;</span><br><span class="line">  		<span class="built_in">console</span>.log(files)</span><br><span class="line">  		<span class="keyword">var</span> filesTmp = <span class="built_in">JSON</span>.stringify(files);</span><br><span class="line">      	<span class="keyword">var</span> pr = <span class="built_in">JSON</span>.parse(filesTmp)</span><br><span class="line">  		<span class="built_in">console</span>.log(pr.upfiles.length)</span><br><span class="line">      	<span class="keyword">if</span>(err)&#123;</span><br><span class="line">        	<span class="built_in">console</span>.log(<span class="string">'parse error: '</span> + err);</span><br><span class="line">      	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; pr.upfiles.length ; i++) &#123;</span><br><span class="line">		        <span class="keyword">var</span> inputFile = files.upfiles[i];<span class="comment">//获取第一个文件</span></span><br><span class="line">		        <span class="keyword">var</span> finalname = inputFile.originalFilename;</span><br><span class="line">		        insertSQL_params.push(finalname)</span><br><span class="line">		        <span class="keyword">var</span> new_name =__dirname+<span class="string">"/bower_components/uploads/"</span>+finalname;<span class="comment">//获取文件名</span></span><br><span class="line">		        <span class="built_in">console</span>.log(new_name)</span><br><span class="line">		        <span class="keyword">var</span> old_name = inputFile.path;<span class="comment">//获取文件路径</span></span><br><span class="line">		        <span class="built_in">console</span>.log(old_name)</span><br><span class="line">				fs.renameSync(old_name,new_name);	            			</span><br><span class="line">      		&#125;</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="comment">//添加数据到数据库</span></span><br><span class="line">     	conn.query(insertSQL,insertSQL_params, <span class="function"><span class="keyword">function</span> (<span class="params">err2, rows</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (err2)&#123;</span><br><span class="line">	            <span class="built_in">console</span>.log(err2);</span><br><span class="line">	        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	        	<span class="built_in">console</span>.log(<span class="string">"成功"</span>)</span><br><span class="line">	        &#125;</span><br><span class="line">		&#125;)</span><br><span class="line">      	res.send(<span class="string">"成功"</span>)  			 		</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如有错误、意见、建议，欢迎提出。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20160310/node-student-sys/" rel="next" title="nodeJS创建简单学生管理系统">
+                <i class="fa fa-chevron-left"></i> nodeJS创建简单学生管理系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/20180712/laya/" rel="prev" title="laya入门，这一篇应该够了">
+                laya入门，这一篇应该够了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        if (disqus_config) {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20160520/node-express-fileupload/';
+            this.page.identifier = '20160520/node-express-fileupload/';
+            this.page.title = 'node+express使用multiparty实现文件上传';
+          };
+          if (window.DISQUS) {
+            $('.disqus-loading').remove();
+            window.DISQUS.reset({
+              reload: true,
+              config: function () {
+                this.page.url = 'https://www.wxqdoit.com/20160520/node-express-fileupload/';
+                this.page.identifier = '20160520/node-express-fileupload/';
+                this.page.title = 'node+express使用multiparty实现文件上传';
+              }
+            });
+          }
+        }
+        else {
+          var disqus_config = function () {
+            this.page.url = 'https://www.wxqdoit.com/20160520/node-express-fileupload/';
+            this.page.identifier = '20160520/node-express-fileupload/';
+            this.page.title = 'node+express使用multiparty实现文件上传';
+          };
+          var d = document, s = d.createElement('script');
+          s.src = 'https://diygod-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', '' + +new Date());
+          (d.head || d.body).appendChild(s);
+        }
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://wxqdoit-blog-1252754215.cos.ap-chengdu.myqcloud.com/card.jpg" alt="wxqdoit">
+            
+              <p class="site-author-name" itemprop="name">wxqdoit</p>
+              <p class="site-description motion-element" itemprop="description">神啊，救救我吧！</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.wxqdoit.cn" target="_blank" title="Home" data-balloon="Home" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-home"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/wxqdoit" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/3266694004" target="_blank" title="Weibo" data-balloon="Weibo" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-image"></div>
+      <div class="footer-inner">
+        <p>小站已顽强存活<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>必须洗净一切往事，否则你永远无法清楚自由地看这个世界</p>
+
+<p>© <span itemprop="copyrightYear">2019</span> Hey, wxqdoit.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 支持.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a>
+    蜀ICP备16030039号-3.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">wxqdoit</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+    <canvas id="live2d" width="150" height="400" class="live2d"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v="></script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
